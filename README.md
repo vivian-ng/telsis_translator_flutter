@@ -6,11 +6,11 @@ This application is based on the [Telsis language translator](https://github.com
 
 (Note: This application is my first attempt at writing something in Dart and Flutter. There are probably better ways to write some of the code, such as those dealing with Map iterations. The application has only been tested on a Linux machine and an Android emulator so far. I will eventually get down to actual tests on an Android phone and packaging it for Android, Linux, and maybe Windows. I do not have an iPhone or Mac so it will not be possible for me to package for those platforms.)
 
-The advantage of using Flutter for the UI is that the application can easily be built to run on many platforms. For example, this is the application running on an Android emulator.
+The advantage of using Flutter for the UI is that the application can easily be built to run on many platforms. For example, this is the application running on an Android emulator.<br>
 ![](screenshots/onAndroidEmulator.png)
 
 
-And the same application running natively in Linux.
+And the same application running natively in Linux.<br>
 ![](screenshots/onLinux.png)
 ## Usage
 Either the source or target language must be specified in order for the translator to work. They must also not be the same. The application will also refuse to translate from one real world language to another real world language, so it cannot be used as a free translation app.
@@ -30,14 +30,10 @@ Names can be enclosed in backslashes so that they appear correctly in translated
 Note: Punctuation is sometimes not handled properly, so it is best to avoid using punctuation marks in the source text.
 
 ## Requirements
-The UI was written in Flutter and uses the following packages:
-
-[flutter_form_builder](https://pub.dev/packages/flutter_form_builder)
-
-[diacritic](https://pub.dev/packages/diacritic)
-
-[http](https://pub.dev/packages/http)
-
+The UI was written in Flutter and uses the following packages:<br>
+[flutter_form_builder](https://pub.dev/packages/flutter_form_builder)<br>
+[diacritic](https://pub.dev/packages/diacritic)<br>
+[http](https://pub.dev/packages/http)<br>
 
 A modified version of [translator](https://pub.dev/packages/translator)
 by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the application. The package was modified to allow use of Tamil script in the conversion process.
