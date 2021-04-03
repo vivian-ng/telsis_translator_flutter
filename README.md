@@ -2,7 +2,9 @@
 
 ### Work in progress!!
 
-This application is based on the [Telsis language translator](https://github.com/vivian-ng/telsis_translator) written in Python 3. It has been rewritten in Dart with a UI written in Flutter. The application translates to and from the Telsis language, the language used in the world setting of Violet Evergarden. The language is created by translating the source text into Tamil, converting the Tamil script into unaccented English alphabet characters, using a substitution cipher to swap the characters, and finally representing the results in the Telsis alphabet. The [References](#references) section contains more information about decoding the language and the original script from which the Python 3 translator was built on.
+Blog post with some background information: [Telsis language ("Nunkish") translator with Flutter UI](https://teck78.blogspot.com/2021/04/telsis-language-nunkish-translator-with.html)<br>
+
+This application is based on the [Telsis language translator](https://github.com/vivian-ng/telsis_translator) written in Python 3. It has been rewritten in Dart with a UI written in Flutter. The application translates to and from the Telsis language (aka Nunkish), the language used in the world setting of Violet Evergarden. The language is created by translating the source text into Tamil, converting the Tamil script into unaccented English alphabet characters, using a substitution cipher to swap the characters, and finally representing the results in the Telsis alphabet. The [References](#references) section contains more information about decoding the language and the original script from which the Python 3 translator was built on.
 
 (Note: This application is my first attempt at writing something in Dart and Flutter. There are probably better ways to write some of the code, such as those dealing with Map iterations. The application has only been tested on a Linux machine and an Android phone so far. I will eventually get down to packaging it for Windows. I do not have an iPhone or Mac so it will not be possible for me to package for those platforms.)
 
