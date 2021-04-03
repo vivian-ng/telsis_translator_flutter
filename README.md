@@ -12,6 +12,18 @@ The advantage of using Flutter for the UI is that the application can easily be 
 
 And the same application running natively in Linux.<br>
 ![](screenshots/onLinux.png)
+
+## Installation and running
+[Releases](https://github.com/vivian-ng/telsis_translator_flutter/releases) are currently available for Linux (as a snap package) and Android (as APK, signed using the debug key). A build for Windows may be released in the future.
+
+If you do not want to install the release, you can install Flutter on your system and use `flutter run` to run this application. Please follow the instructions [here](https://flutter.dev/docs/get-started/install) to install Flutter for your system. Then, clone this repository, go into the repository folder, and run `flutter run -d linux` or `flutter run -d windows` or `flutter run -d macos` depending on what system you are on. Note that this application has only been tested on Linux and an Android emulator so far.
+
+To install the APK, you need to enable your Android to install unknown apps. Go to Settings > Apps > Menu > Special access. Choose Install unknown apps. Then, use a file manager on your phone to navigate to wherever the APK has been downloaded, and click on the APK to install it. You can also build the APK on your own (after installing Flutter and cloning this repository) by using `flutter build apk`. Once the APK has been built, you can connect your phone to the computer and use `flutter install` to install the APK to your phone.
+
+To install the snap package, use `sudo snap install telsis-translator-flutter_<version>.snap`. A desktop entry should be created under the Accessories category.
+
+Once installed, the application can be run as per an app on Android or Linux.
+
 ## Usage
 Either the source or target language must be specified in order for the translator to work. They must also not be the same. The application will also refuse to translate from one real world language to another real world language, so it cannot be used as a free translation app.
 
