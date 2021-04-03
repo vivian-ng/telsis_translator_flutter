@@ -34,9 +34,12 @@ The UI was written in Flutter and uses the following packages:<br>
 [flutter_form_builder](https://pub.dev/packages/flutter_form_builder)<br>
 [diacritic](https://pub.dev/packages/diacritic)<br>
 [http](https://pub.dev/packages/http)<br>
+[desktop_window](https://pub.dev/packages/desktop_window)<br>
 
 A modified version of [translator](https://pub.dev/packages/translator)
 by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the application. The package was modified to allow use of Tamil script in the conversion process.
+
+[flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons) was used to create the icons for Android.
 
 ## References
 - Original [Python script](https://repl.it/@ValkrenDarklock/NunkishTrans) by Valkren, which translates Telsis into English

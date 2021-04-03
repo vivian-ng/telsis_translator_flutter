@@ -1,0 +1,28 @@
+name: telsis-translator-flutter
+version: 0.1.0
+summary: Telsis language translator
+description: App that translates to and from the Telsis language
+
+confinement: strict
+base: core18
+grade: stable
+
+slots:
+  dbus-telsis-translator-flutter: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: com.maplerain.telsis_translator_flutter # adjust accordingly to your app name and
+    
+apps:
+  telsis-translator-flutter:
+    command: telsis_translator_flutter
+    extensions: [flutter-master] # Where "master" defines which Flutter channel to use for the build
+    plugs:
+    - network
+    slots:
+      - dbus-telsis-translator-flutter
+parts:
+  telsis-translator-flutter:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application

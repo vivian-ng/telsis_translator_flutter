@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:desktop_window/desktop_window.dart';
 import 'package:telsis_translator_flutter/telsis_translator.dart';
 import 'package:telsis_translator_flutter/src/langs/language.dart';
 import 'dart:async';
+import 'dart:io';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Telsis Translator',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
       home: MyHomePage(title: 'Telsis Translator'),
     );
@@ -97,9 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      DesktopWindow.setWindowSize(Size(640, 480));
+    }
     languages = _languages();
     reverseLanguages = _reverseLanguages();
     languageNames.addAll(languages.values);
+    languageNames.remove('Automatic');
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
