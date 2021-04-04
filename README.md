@@ -8,8 +8,8 @@ This application is based on the [Telsis language translator](https://github.com
 
 (Note: This application is my first attempt at writing something in Dart and Flutter. There are probably better ways to write some of the code, such as those dealing with Map iterations. The application has been tested on a Linux machine, Windows 10 machine, and an Android phone. I do not have an iPhone or Mac so it will not be possible for me to package for those platforms.)
 
-The advantage of using Flutter for the UI is that the application can easily be built to run on many platforms. For example, this is the application running on an Android emulator.<br>
-![](screenshots/onAndroidEmulator.png)
+The advantage of using Flutter for the UI is that the application can easily be built to run on many platforms. For example, this is the application running on an Android phone.<br>
+![](screenshots/fromJAtoTEL.jpg)
 
 
 And the same application running natively in Linux.<br>
@@ -35,10 +35,10 @@ If Telsis is specified as the source language, the translator will attempt to tr
 
 If Telsis is specified as the target language, the translator will attempt to translate the source text into Telsis, guessing the source language if it is not specified. If a target language other than Telsis is specified, the translator will assume the source text is in the Telsis language and attempt to translate the source text into the given target language.
 
-![](screenshots/fromJAtoTEL.png)
+![](screenshots/onWindows.png)
 
 
-![](screenshots/fromTELtoJA.png)
+![](screenshots/fromTELtoJA.jpg)
 
 
 Names can be enclosed in backslashes so that they appear correctly in translated text. A backslash is also used as an escape character. If the use of backslash can result in such characters, leave a space after the backslash.
