@@ -123,6 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       FormBuilderSearchableDropdown(
                         name: 'source_language',
+                        autoFocusSearchBox: true,
                         decoration: InputDecoration(
                           labelText: 'Source Language',
                         ),
@@ -132,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       FormBuilderSearchableDropdown(
                         name: 'target_language',
+                        autoFocusSearchBox: true,
                         decoration: InputDecoration(
                           labelText: 'Target Language',
                         ),
