@@ -62,6 +62,7 @@ by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the ap
 ## References
 - Original [Python script](https://repl.it/@ValkrenDarklock/NunkishTrans) by Valkren, which translates Telsis into English
 - [Reddit post](https://www.reddit.com/r/anime/comments/88bbob/violet_evergarden_alphabet_and_language_part_2/) on decoding the Telsis language
+- Please see this [explanation](https://github.com/vivian-ng/telsis_translator/blob/main/explanation.md) for more information about how the Telsis language translator works, and the actual conversion process.
 
 ## Revision history
 - 2021-04-03: Initial release (0.1.0).
