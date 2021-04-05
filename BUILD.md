@@ -3,14 +3,13 @@
 ## Linux
 To build a snap package for Linux, first, set up the environment as per the instructions [here](https://flutter.dev/docs/deployment/linux#set-up-the-build-environment). This includes installing `snapcraft` and `multipass`. Then, build the snap with:
 ```
-flutter build linux --release
-snapcraft build
+snapcraft
 ```
-If there are errors, you may need to do a
+If there are errors, you may need to delete the `build` directory and try building again. If that still does not work, delete the `build` directory and run
 ```
-snapcraft clean telsis-translator-flutter
+snapcraft clean
 ```
-to remove old build files, then try building again.
+to remove all previously downloaded and built files, then try building again. This is basically creating a new VM so it will take time to build again.
 
 ## Windows
 To build for Windows, run:

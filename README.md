@@ -22,7 +22,7 @@ If you do not want to install the release, you can install Flutter on your syste
 
 To install the APK, you need to enable your Android to install unknown apps. Go to Settings > Apps > Menu > Special access. Choose Install unknown apps. Then, use a file manager on your phone to navigate to wherever the APK has been downloaded, and click on the APK to install it. You can also build the APK on your own (after installing Flutter and cloning this repository) by using `flutter build apk`. Once the APK has been built, you can connect your phone to the computer and use `flutter install` to install the APK to your phone.
 
-To install the snap package, use `sudo snap install telsis-translator-flutter_<version>.snap`. A desktop entry should be created under the Accessories category.
+To install the snap package, use `sudo snap install telsis-translator-flutter_<version>.snap`. A desktop entry should be created under the Accessories category. (Note: As the snap is not signed, you may need to use `sudo snap install telsis-translator-flutter_<version>.snap --dangerous` instead to install it.)
 
 To install the self-extracting installer, download the .exe file, then double click on it to run it. Follow the installation prompts.
 
@@ -66,7 +66,8 @@ by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the ap
 
 ## Revision history
 - 2021-04-03: Initial release (0.1.0).
-- 2021-04-04: Packaged 0.1.0 for Windows using Inno Setup; autofocus dropdown menu; added build instructions.
+- 2021-04-04: Packaged 0.1.0 for Windows using Inno Setup; added build instructions.
+- 2021-04-05: Version 0.1.1; autofocus dropdown menu; removed dbus from snap; use `window_size` plugin for window size and title.
 
 ## Disclaimer
 This application is not for sale. It is meant for demonstration purpose only. No support is provided for this application. The rights to the Telsis language belong to the copyright holders of the Violet Evergarden anime series, and its portrayal in this application (as a font) is based on the concept of fair use. By using this application, the end user agrees to undertake full responsibility for using this application. The developer is not liable for any damage that may arise from the use of this application.

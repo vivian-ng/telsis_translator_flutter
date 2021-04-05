@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:desktop_window/desktop_window.dart';
+//import 'package:desktop_window/desktop_window.dart';
+import 'package:window_size/window_size.dart';
 import 'package:telsis_translator_flutter/telsis_translator.dart';
 import 'package:telsis_translator_flutter/src/langs/language.dart';
 import 'dart:async';
 import 'dart:io';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    setWindowTitle("Telsis Language Translator");
+    //setWindowMinSize(Size(480, 320));
+    //setWindowMaxSize(Size(1024, 800));
+    getWindowInfo().then((windowInfo) {
+      setWindowFrame(Rect.fromCenter(
+        center: windowInfo.frame.center,
+        width: 640,
+        height: 480,
+      ));
+    });
+  }
   runApp(MyApp());
 }
 
@@ -99,9 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      DesktopWindow.setWindowSize(Size(640, 480));
-    }
     languages = _languages();
     reverseLanguages = _reverseLanguages();
     languageNames.addAll(languages.values);

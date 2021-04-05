@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.maplerain.telsis_translator_flutter">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Telsis Language Translator"
         android:icon="@mipmap/launcher_icon">

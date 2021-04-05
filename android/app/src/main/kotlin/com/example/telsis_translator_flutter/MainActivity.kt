@@ -1,4 +1,4 @@
-package com.example.telsis_translator_flutter
+package com.maplerain.telsis_translator_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 
