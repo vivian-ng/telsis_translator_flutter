@@ -16,13 +16,13 @@ And the same application running natively in Linux.<br>
 ![](screenshots/onLinux.png)
 
 ## Installation and running
-[Releases](https://github.com/vivian-ng/telsis_translator_flutter/releases) are currently available for Linux (as a snap package), Windows (as a self-extracting installer), and Android (as APK, signed using the debug key).
+[Releases](https://github.com/vivian-ng/telsis_translator_flutter/releases) are currently available for Linux (as a [snap package](https://snapcraft.io/telsis-translator-flutter)), Windows (as a [self-extracting installer](https://github.com/vivian-ng/telsis_translator_flutter/releases/download/0.1.1/telsis-translator-flutter_0.1.1.exe)), and Android (as [APK](https://github.com/vivian-ng/telsis_translator_flutter/releases/download/0.1.1/telsis-translator-flutter_0.1.1.apk), signed using the debug key).
+
+On Linux, the snap can be installed using `sudo snap install telsis-translator-flutter`. A desktop entry should be created under the Accessories category.
 
 If you do not want to install the release, you can install Flutter on your system and use `flutter run` to run this application. Please follow the instructions [here](https://flutter.dev/docs/get-started/install) to install Flutter for your system. Then, clone this repository, go into the repository folder, and run `flutter run -d linux` or `flutter run -d windows` or `flutter run -d macos` depending on what system you are on. Note that this application has only been tested on Linux (Linux Mint 20.1), Windows 10, and an Android phone (Samsung Galaxy S7).
 
 To install the APK, you need to enable your Android to install unknown apps. Go to Settings > Apps > Menu > Special access. Choose Install unknown apps. Then, use a file manager on your phone to navigate to wherever the APK has been downloaded, and click on the APK to install it. You can also build the APK on your own (after installing Flutter and cloning this repository) by using `flutter build apk`. Once the APK has been built, you can connect your phone to the computer and use `flutter install` to install the APK to your phone.
-
-To install the snap package, use `sudo snap install telsis-translator-flutter_<version>.snap`. A desktop entry should be created under the Accessories category. (Note: As the snap is not signed, you may need to use `sudo snap install telsis-translator-flutter_<version>.snap --dangerous` instead to install it.)
 
 To install the self-extracting installer, download the .exe file, then double click on it to run it. Follow the installation prompts.
 
