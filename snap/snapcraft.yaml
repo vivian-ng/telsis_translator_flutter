@@ -18,18 +18,3 @@ parts:
     source: .
     plugin: flutter
     flutter-target: lib/main.dart # The main entry-point file of the application
-
-architectures:
-  - build-on: amd64
-    run-on: amd64
-
-  - build-on: i386
-    run-on: i386
-
-  - build-on: armhf
-    run-on: armhf
-    build-error: ignore
-
-  - build-on: arm64
-    run-on: arm64
-    build-error: ignore    
