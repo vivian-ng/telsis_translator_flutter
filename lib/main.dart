@@ -61,6 +61,27 @@ class _MyHomePageState extends State<MyHomePage> {
     4: 'This is a Telsis language translator'
   };
 
+  void _showNotImplementedDialog(BuildContext context) {
+    // Displays a dialog for features that have not been implemented
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("Note"),
+          content: new Text("This feature has not been implemented yet"),
+          actions: <Widget>[
+            new ElevatedButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future _translate() async {
     int returncode = 0;
     FocusScope.of(context).unfocus();
@@ -163,9 +184,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Padding(
                         padding: EdgeInsets.all(10),
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
                           onPressed: _translate,
-                          child: Text(
+                          icon: Icon(
+                            Icons.translate,
+                            color: Colors.indigo.shade50,
+                            size: 24.0,
+                          ),
+                          label: Text(
                             'Translate',
                             style: new TextStyle(
                               fontSize: 24.0,
@@ -190,6 +216,58 @@ class _MyHomePageState extends State<MyHomePage> {
                             fontSize: 24.0,
                             fontFamily: 'TelsisTyped',
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(5),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            _showNotImplementedDialog(context);
+                          },
+                          icon: Icon(
+                            Icons.image_search,
+                            color: Colors.indigo.shade50,
+                            size: 24.0,
+                          ),
+                          label: Text(
+                            'Select image',
+                            style: new TextStyle(
+                              fontSize: 24.0,
+                            ),
+                          ), // This trailing comma makes auto-formatting nicer for build methods.
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(5),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            showAboutDialog(
+                              context: context,
+                              applicationIcon: Image.asset(
+                                  "assets/icon/TelsisTranslatorIcon.png",
+                                  scale: 4),
+                              applicationName: 'Telsis Translator',
+                              applicationVersion: '0.1.2',
+                              applicationLegalese: '©2021 Vivian Ng',
+                              children: <Widget>[
+                                Padding(
+                                    padding: EdgeInsets.only(top: 15),
+                                    child: Text(
+                                        'Translates to and from the Telsis language used in the Violet Evergarden anime series\n\nSource code:\nhttps://github.com/vivian-ng/telsis_translator_flutter'))
+                              ],
+                            );
+                          },
+                          icon: Icon(
+                            Icons.info_outline,
+                            color: Colors.indigo.shade50,
+                            size: 24.0,
+                          ),
+                          label: Text(
+                            'About',
+                            style: new TextStyle(
+                              fontSize: 24.0,
+                            ),
+                          ), // This trailing comma makes auto-formatting nicer for build methods.
                         ),
                       ),
                     ]),
