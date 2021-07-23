@@ -188,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: _translate,
                           icon: Icon(
                             Icons.translate,
-                            color: Colors.indigo.shade50,
+                            color: Colors.indigo[50],
                             size: 24.0,
                           ),
                           label: Text(
@@ -226,7 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           icon: Icon(
                             Icons.image_search,
-                            color: Colors.indigo.shade50,
+                            color: Colors.indigo[50],
                             size: 24.0,
                           ),
                           label: Text(
@@ -259,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           icon: Icon(
                             Icons.info_outline,
-                            color: Colors.indigo.shade50,
+                            color: Colors.indigo[50],
                             size: 24.0,
                           ),
                           label: Text(
