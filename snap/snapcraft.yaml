@@ -7,6 +7,12 @@ confinement: strict
 base: core18
 grade: stable
    
+slots:
+  dbus-telsis-translator-flutter:
+    interface: dbus
+    bus: session
+    name: com.maplerain.telsis_translator_flutter
+
 apps:
   telsis-translator-flutter:
     command: telsis_translator_flutter
