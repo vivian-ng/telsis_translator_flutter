@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_fields/form_builder_fields.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 //import 'package:desktop_window/desktop_window.dart';
 import 'package:window_size/window_size.dart';
 import 'package:telsis_translator_flutter/telsis_translator.dart';
@@ -135,9 +137,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     languages = _languages();
+    languages.remove('Automatic');
     reverseLanguages = _reverseLanguages();
     languageNames.addAll(languages.values);
     languageNames.remove('Automatic');
+    var languageDropdownItems = languages.values
+        .map((language) => DropdownMenuItem(
+              value: language,
+              child: Text(language),
+            ))
+        .toList();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -154,23 +163,25 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       FormBuilderSearchableDropdown(
+                        //FormBuilderDropdown(
                         name: 'source_language',
                         autoFocusSearchBox: true,
                         decoration: InputDecoration(
                           labelText: 'Source Language',
                         ),
                         items: languageNames,
-                        //items: languageitems,
+                        //items: languageDropdownItems,
                         initialValue: 'Telsis',
                       ),
                       FormBuilderSearchableDropdown(
+                        //FormBuilderDropdown(
                         name: 'target_language',
                         autoFocusSearchBox: true,
                         decoration: InputDecoration(
                           labelText: 'Target Language',
                         ),
                         items: languageNames,
-                        //items: languageitems,
+                        //items: languageDropdownItems,
                         initialValue: 'English',
                       ),
                       FormBuilderTextField(

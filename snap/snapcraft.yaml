@@ -1,5 +1,5 @@
 name: telsis-translator-flutter
-version: 0.1.2
+version: 0.1.3
 summary: Telsis language translator
 description: App that translates to and from the Telsis language
 
@@ -7,11 +7,11 @@ confinement: strict
 base: core18
 grade: stable
    
-slots:
-  dbus-telsis-translator-flutter:
-    interface: dbus
-    bus: session
-    name: com.maplerain.telsis_translator_flutter
+#slots:
+#  dbus-telsis-translator-flutter:
+#    interface: dbus
+#    bus: session
+#    name: com.maplerain.telsis_translator_flutter
 
 apps:
   telsis-translator-flutter:

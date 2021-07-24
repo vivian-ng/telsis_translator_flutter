@@ -12,7 +12,7 @@ class Language {
 /// Language list containing all languages supported by Google Translate API
 class LanguageList {
   static final _langs = {
-    'auto': 'Automatic',
+    //'auto': 'Automatic',
     'af': 'Afrikaans',
     'sq': 'Albanian',
     'am': 'Amharic',
