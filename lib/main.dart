@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_fields/form_builder_fields.dart';
+//import 'package:form_builder_fields/form_builder_fields.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 //import 'package:desktop_window/desktop_window.dart';
 import 'package:window_size/window_size.dart';
@@ -331,7 +331,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       FormBuilderSearchableDropdown(
                         //FormBuilderDropdown(
                         name: 'source_language',
-                        autoFocusSearchBox: true,
+                        //autoFocusSearchBox: true,
                         decoration: InputDecoration(
                           labelText: 'Source Language',
                         ),
@@ -342,7 +342,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       FormBuilderSearchableDropdown(
                         //FormBuilderDropdown(
                         name: 'target_language',
-                        autoFocusSearchBox: true,
+                        //autoFocusSearchBox: true,
                         decoration: InputDecoration(
                           labelText: 'Target Language',
                         ),
