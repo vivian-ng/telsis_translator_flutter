@@ -8,9 +8,6 @@ import 'package:telsis_translator_flutter/telsis_translator.dart';
 import 'package:telsis_translator_flutter/src/langs/language.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:file_picker_desktop/file_picker_desktop.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,7 +51,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   File _image;
-  final picker = ImagePicker();
   bool _filePicked = false;
 
   final _formKey = GlobalKey<FormBuilderState>();
@@ -99,12 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
         reverseLanguages[_formKey.currentState.fields['source_language'].value];
     String tgtlang =
         reverseLanguages[_formKey.currentState.fields['target_language'].value];
-    if (_filePicked) {
-      // Place holder to use OCR to read input from image
-      srclang = 'telsis'; // source image must be in Telsis language
-      srctext = await readFromImage();
-    } else
-      srctext = _formKey.currentState.fields['source_text'].value;
+    srctext = _formKey.currentState.fields['source_text'].value;
     TelsisTranslator translator = TelsisTranslator(srctext, srclang, tgtlang);
     returncode =
         await translator.translate(srctext, src: srclang, tgt: tgtlang);
@@ -146,158 +137,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Map<String, String> _reverseLanguages() {
     var orig = _languages();
     return orig.map((k, v) => MapEntry(v, k));
-  }
-
-  Future getImageFromCamera() async {
-    _filePicked = false;
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-        _filePicked = true;
-      } else {
-        _filePicked = false;
-        print('No image selected.');
-      }
-    });
-  }
-
-  Future _getImage() async {
-    _filePicked = false;
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-        _filePicked = true;
-      } else {
-        _filePicked = false;
-        print('No image selected.');
-      }
-    });
-  }
-
-  Future _getFile() async {
-    _filePicked = false;
-    try {
-      final result = await pickFiles(
-        allowMultiple: false,
-      );
-      if (result != null) {
-        _image = File(result.files.single.path);
-        print(_image.path);
-        _filePicked = true;
-      } else {
-        // User canceled the picker
-        _filePicked = false;
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future readFromImage() async {
-    String srctext = '';
-    if (Platform.isAndroid || Platform.isIOS) {
-      srctext = await FlutterTesseractOcr.extractText(_image.path,
-          language: 'telsis');
-      print(srctext);
-    } else {
-      print('Feature not supported');
-    }
-    //srctext = 'Nunki'; // temporary example output
-    return srctext;
-  }
-
-  Widget _selectImageButton() {
-    if (Platform.isAndroid || Platform.isIOS) {
-      return ElevatedButton.icon(
-        onPressed: _getImage,
-        icon: Icon(
-          Icons.image_search,
-          color: Colors.indigo[50],
-          size: 24.0,
-        ),
-        label: Text(
-          'Select image',
-          style: new TextStyle(
-            fontSize: 24.0,
-          ),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      );
-      /* will eventually implement on desktop platforms when tesseract_ocr supports them
-    } else if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      return ElevatedButton.icon(
-        onPressed: _getFile,
-        icon: Icon(
-          Icons.image_search,
-          color: Colors.indigo[50],
-          size: 24.0,
-        ),
-        label: Text(
-          'Select image',
-          style: new TextStyle(
-            fontSize: 24.0,
-          ),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      ); */
-    } else {
-      // not supported yet, so return a button that does nothing
-      return ElevatedButton.icon(
-        onPressed: () {
-          _showNotImplementedDialog(context);
-        },
-        icon: Icon(
-          Icons.image_search,
-          color: Colors.indigo[50],
-          size: 24.0,
-        ),
-        label: Text(
-          'Select image',
-          style: new TextStyle(
-            fontSize: 24.0,
-          ),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      );
-    }
-  }
-
-  Widget _selectCameraButton() {
-    if (Platform.isAndroid || Platform.isIOS) {
-      return ElevatedButton.icon(
-        onPressed: getImageFromCamera,
-        icon: Icon(
-          Icons.camera_alt_outlined,
-          color: Colors.indigo[50],
-          size: 24.0,
-        ),
-        label: Text(
-          'Camera',
-          style: new TextStyle(
-            fontSize: 24.0,
-          ),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      );
-    } else {
-      // not supported yet, so return a button that does nothing
-      return ElevatedButton.icon(
-        onPressed: () {
-          _showNotImplementedDialog(context);
-        },
-        icon: Icon(
-          Icons.camera_alt_outlined,
-          color: Colors.indigo[50],
-          size: 24.0,
-        ),
-        label: Text(
-          'Camera',
-          style: new TextStyle(
-            fontSize: 24.0,
-          ),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      );
-    }
   }
 
   @override
@@ -397,14 +236,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Padding(
                         padding: EdgeInsets.all(5),
-                        child: _selectImageButton(),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(5),
-                        child: _selectCameraButton(),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(5),
                         child: ElevatedButton.icon(
                           onPressed: () {
                             showAboutDialog(
@@ -413,7 +244,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   "assets/icon/TelsisTranslatorIcon.png",
                                   scale: 4),
                               applicationName: 'Telsis Translator',
-                              applicationVersion: '0.1.4_alpha',
+                              applicationVersion: '0.1.4',
                               applicationLegalese: '©2021 Vivian Ng',
                               children: <Widget>[
                                 Padding(

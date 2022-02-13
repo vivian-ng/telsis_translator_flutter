@@ -16,7 +16,7 @@ grade: stable
 apps:
   telsis-translator-flutter:
     command: telsis_translator_flutter
-    extensions: [flutter-master] # Where "master" defines which Flutter channel to use for the build
+    extensions: [flutter-stable] # Where "master" defines which Flutter channel to use for the build
     plugs:
     - network
 parts:
@@ -24,3 +24,7 @@ parts:
     source: .
     plugin: flutter
     flutter-target: lib/main.dart # The main entry-point file of the application
+    override-pull: |
+      set -eux
+      rm -rf $SNAPCRAFT_PROJECT_DIR/build
+      snapcraftctl pull

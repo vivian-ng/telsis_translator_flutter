@@ -16,7 +16,7 @@ And the same application running natively in Linux.<br>
 ![](screenshots/onLinux.png)
 
 ## Installation and running
-[Releases](https://github.com/vivian-ng/telsis_translator_flutter/releases) are currently available for Linux (as a [snap package](https://snapcraft.io/telsis-translator-flutter)), Windows (as a [self-extracting installer](https://github.com/vivian-ng/telsis_translator_flutter/releases/download/0.1.1/telsis-translator-flutter_0.1.1.exe)), and Android (as [APK](https://github.com/vivian-ng/telsis_translator_flutter/releases/download/0.1.1/telsis-translator-flutter_0.1.1.apk), signed using the debug key).
+[Releases](https://github.com/vivian-ng/telsis_translator_flutter/releases) are currently available for Linux (as a [snap package](https://snapcraft.io/telsis-translator-flutter)), Windows (as a [self-extracting installer](https://github.com/vivian-ng/telsis_translator_flutter/releases/download/0.1.2/telsis-translator-flutter_0.1.2.exe)), and Android (as [APK](https://github.com/vivian-ng/telsis_translator_flutter/releases/download/0.1.3/telsis-translator-flutter_0.1.3.apk), signed using the debug key).
 
 On Linux, the snap can be installed using `sudo snap install telsis-translator-flutter`. A desktop entry should be created under the Accessories category.
 
@@ -71,6 +71,7 @@ by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the ap
 - 2021-07-23: Version 0.1.2; added About button.
 - 2021-07-24: Version 0.1.3; switched to new flutter_form_builder version with accompanying form_builder_fields and form_builder_extra_fields packages that used to provide `FormBuilerTextField` and `FormBuilderSearchableDropdown` widgets.
 - 2021-07-26: Version 0.1.4_alpha; preliminary attempt to add OCR support for Android devices.
+- 2022-02-13: Version 0.1.4; removed attempt to add OCR support; used new flutter_form_builder; switched to flutter-stable for snap
 
 ## Disclaimer
 This application is not for sale. It is meant for demonstration purpose only. No support is provided for this application. The rights to the Telsis language belong to the copyright holders of the Violet Evergarden anime series, and its portrayal in this application (as a font) is based on the concept of fair use. By using this application, the end user agrees to undertake full responsibility for using this application. The developer is not liable for any damage that may arise from the use of this application.
