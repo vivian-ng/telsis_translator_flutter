@@ -103,9 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
       if (returncode == 0) {
         _translatedText = translator.results['tgt_text'];
         if (tgtlang == 'telsis') {
-          _telsisText = translator.results['tgt_text'];
+          _telsisText = translator.results['tgt_text'].replaceAll('\\', '');
         } else {
-          _telsisText = translator.results['src_text'];
+          _telsisText = translator.results['src_text'].replaceAll('\\', '');
         }
       } else {
         showDialog(
