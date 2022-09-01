@@ -260,7 +260,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   scale: 4),
                               applicationName: 'Telsis Translator',
                               applicationVersion: '0.1.5',
-                              applicationLegalese: '©2021 Vivian Ng',
+                              applicationLegalese: '©2022 Vivian Ng',
                               children: <Widget>[
                                 Padding(
                                     padding: EdgeInsets.only(top: 15),

@@ -73,7 +73,7 @@ by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the ap
 - 2021-07-26: Version 0.1.4_alpha; preliminary attempt to add OCR support for Android devices.
 - 2022-02-13: Version 0.1.4; removed attempt to add OCR support; used new flutter_form_builder; switched to flutter-stable for snap
 - 2022-08-31: Version 0.1.4; minor change to fix the backslash showing in the Telsis alphabet text
-- 2022-09-01: Version 0.1.5; added null safety checks and such; handling of backslash is still unstable
+- 2022-09-01: Version 0.1.5; added null safety checks and such; handling of backslash is still unstable; unstable in Linux (depending on GTK version)
 
 
 ## Disclaimer
@@ -85,4 +85,4 @@ MIT License; see [LICENSE](LICENSE) file for more information.
 The [Telsis language font](fonts/TelsisTyped.otf) is for use with my programs and not for distribution.
 
 
-Copyright (c) 2021 Vivian Ng
+Copyright (c) 2022 Vivian Ng
