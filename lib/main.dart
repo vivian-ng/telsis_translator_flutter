@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-//import 'package:form_builder_fields/form_builder_fields.dart';
-import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 //import 'package:desktop_window/desktop_window.dart';
 import 'package:window_size/window_size.dart';
 import 'package:telsis_translator_flutter/telsis_translator.dart';
@@ -50,12 +48,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //File _image;
-  bool _filePicked = false;
-
-  final _formKey = GlobalKey<FormBuilderState>();
+  final _formKey = GlobalKey<FormState>();
   String _translatedText = '';
   String _telsisText = '';
+  String _srclang = 'Telsis';
+  String _tgtlang = 'English';
+  String _srctext = '';
+  String srctext = '';
+  String srclang = 'telsis';
+  String tgtlang = 'en';
   late Map<String, String> languages;
   late Map<String, String> reverseLanguages;
   List<String> languageNames = [];
@@ -63,43 +64,39 @@ class _MyHomePageState extends State<MyHomePage> {
     1: 'Language not supported',
     2: 'Either source or output language must be defined',
     3: 'Source and output language cannot be the same',
-    4: 'This is a Telsis language translator'
+    4: 'This is a Telsis language translator',
+    5: 'Source text must not be empty',
   };
 
-//  void _onChanged(dynamic val) => debugPrint(val.toString());
-
-  void _showNotImplementedDialog(BuildContext context) {
-    // Displays a dialog for features that have not been implemented
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: new Text("Note"),
-          content: new Text("This feature has not been implemented yet"),
-          actions: <Widget>[
-            new ElevatedButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+  void _onChanged(dynamic val) {
+    // Uncomment below to print debug console output
+    //debugPrint(val.toString());
   }
 
   Future _translate() async {
     int returncode = 0;
-    String srctext = '';
-    String srclang = '';
-    String tgtlang = '';
     FocusScope.of(context).unfocus();
-    srclang = reverseLanguages[
-        _formKey.currentState!.fields['source_language']?.value]!;
-    tgtlang = reverseLanguages[
-        _formKey.currentState!.fields['target_language']?.value]!;
-    srctext = _formKey.currentState!.fields['source_text']?.value;
+    srclang = reverseLanguages[_srclang]!;
+    tgtlang = reverseLanguages[_tgtlang]!;
+    srctext = _srctext;
+    if (srctext == '') {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text("Error"),
+                content: Text(errorMessages[5]!), // empty source text
+                actions: <Widget>[
+                  // usually buttons at the bottom of the dialog
+                  TextButton(
+                    child: Text("Close"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ));
+      return;
+    }
     TelsisTranslator translator = TelsisTranslator(srctext, srclang, tgtlang!);
     returncode =
         await translator.translate(srctext, src: srclang, tgt: tgtlang);
@@ -129,7 +126,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ));
       }
     });
-    _filePicked = false;
     return;
   }
 
@@ -150,12 +146,12 @@ class _MyHomePageState extends State<MyHomePage> {
     reverseLanguages = _reverseLanguages();
     languageNames.addAll(languages.values);
     languageNames.remove('Automatic');
-    var languageDropdownItems = languages.values
-        .map((language) => DropdownMenuItem(
-              value: language,
-              child: Text(language),
-            ))
-        .toList();
+//    var languageDropdownItems = languages.values
+//        .map((language) => DropdownMenuItem(
+//              value: language,
+//              child: Text(language),
+//            ))
+//        .toList();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -167,46 +163,57 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              FormBuilder(
+              Form(
                 key: _formKey,
-                onChanged: () {
-                  _formKey.currentState!.save();
-                  debugPrint(_formKey.currentState!.value.toString());
-                },
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FormBuilderSearchableDropdown<String>(
-                        popupProps: const PopupProps.menu(showSearchBox: true),
-                        //FormBuilderDropdown(
-                        name: 'source_language',
-                        //autoFocusSearchBox: true,
-                        decoration: InputDecoration(
-                          labelText: 'Source Language',
+                      DropdownSearch<String>(
+                        popupProps: PopupProps.menu(
+                          showSelectedItems: true,
+                          showSearchBox: true,
                         ),
                         items: languageNames,
-                        //items: languageDropdownItems,
-                        //onChanged: _onChanged,
-                        initialValue: 'Telsis',
+                        dropdownDecoratorProps: DropDownDecoratorProps(
+                          dropdownSearchDecoration: InputDecoration(
+                            labelText: "Source language",
+                          ),
+                        ),
+                        onChanged: (data) {
+                          _srclang = data.toString();
+                          _onChanged(_srclang);
+                        },
+                        selectedItem: "Telsis",
                       ),
-                      FormBuilderSearchableDropdown<String>(
-                        popupProps: const PopupProps.menu(showSearchBox: true),
-                        //FormBuilderDropdown(
-                        name: 'target_language',
-                        //autoFocusSearchBox: true,
-                        decoration: InputDecoration(
-                          labelText: 'Target Language',
+                      DropdownSearch<String>(
+                        popupProps: PopupProps.menu(
+                          showSelectedItems: true,
+                          showSearchBox: true,
                         ),
                         items: languageNames,
-                        //items: languageDropdownItems,
-                        //onChanged: _onChanged,
-                        initialValue: 'English',
+                        dropdownDecoratorProps: DropDownDecoratorProps(
+                          dropdownSearchDecoration: InputDecoration(
+                            labelText: "Target language",
+                          ),
+                        ),
+                        onChanged: (data) {
+                          _tgtlang = data.toString();
+                          _onChanged(_tgtlang);
+                        },
+                        selectedItem: "English",
                       ),
-                      FormBuilderTextField(
-                        name: 'source_text',
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Text to translate',
+                          labelText: 'Source text',
+                        ),
+                        onChanged: (String? data) {
+                          _srctext = data.toString();
+                          _onChanged(_srctext);
+                        },
                         textInputAction: TextInputAction.newline,
                         keyboardType: TextInputType.multiline,
-                        initialValue: 'text',
+                        initialValue: '',
                         //onChanged: _onChanged,
                         maxLines: null,
                         style: new TextStyle(
@@ -259,7 +266,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   "assets/icon/TelsisTranslatorIcon.png",
                                   scale: 4),
                               applicationName: 'Telsis Translator',
-                              applicationVersion: '0.1.5',
+                              applicationVersion: '0.1.6',
                               applicationLegalese: '©2022 Vivian Ng',
                               children: <Widget>[
                                 Padding(

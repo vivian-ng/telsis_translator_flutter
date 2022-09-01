@@ -49,10 +49,9 @@ Note: Punctuation is sometimes not handled properly, so it is best to avoid usin
 
 ## Requirements
 The UI was written in Flutter and uses the following packages:<br>
-[flutter_form_builder](https://pub.dev/packages/flutter_form_builder)<br>
+[dropdown_search](https://pub.dev/packages/dropdown_search)<br>
 [diacritic](https://pub.dev/packages/diacritic)<br>
 [http](https://pub.dev/packages/http)<br>
-[desktop_window](https://pub.dev/packages/desktop_window)<br>
 
 A modified version of [translator](https://pub.dev/packages/translator)
 by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the application. The package was modified to allow use of Tamil script in the conversion process.
@@ -74,6 +73,7 @@ by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the ap
 - 2022-02-13: Version 0.1.4; removed attempt to add OCR support; used new flutter_form_builder; switched to flutter-stable for snap
 - 2022-08-31: Version 0.1.4; minor change to fix the backslash showing in the Telsis alphabet text
 - 2022-09-01: Version 0.1.5; added null safety checks and such; handling of backslash is still unstable; unstable in Linux (depending on GTK version)
+- 2022-09-01: Version 0.1.6; switched from flutter_form_builder to use dropdown_search instead
 
 
 ## Disclaimer
