@@ -1,4 +1,4 @@
-import 'package:args/args.dart';
+//import 'package:args/args.dart';
 import 'package:telsis_translator_flutter/src/langs/language.dart';
 import 'package:telsis_translator_flutter/subcipher.dart';
 //import 'package:translator/translator.dart';
@@ -82,7 +82,8 @@ class TelsisTranslator {
   String replace_names(String textstring) {
     /// Replace name codes with actual literal values.
     for (var name_code in names_converted.keys) {
-      textstring = textstring.replaceAll(name_code, names_converted[name_code]);
+      textstring =
+          textstring.replaceAll(name_code, names_converted[name_code]!);
     }
     return textstring;
   }
@@ -131,7 +132,7 @@ class TelsisTranslator {
     // Replace names with their corresponding name codes
     for (String name_code in names_converted.keys) {
       processed_text =
-          processed_text.replaceAll(names_converted[name_code], name_code);
+          processed_text.replaceAll(names_converted[name_code]!, name_code);
     }
     return processed_text;
   }
@@ -196,7 +197,7 @@ class TelsisTranslator {
     /// Translates from real world language to Telsis language.
     source_text = preprocess_source_text(source_text);
     await lang2tamil(source_text, src_lang);
-    var tgt_text = tamil2telsis(results['tamil_text']);
+    var tgt_text = tamil2telsis(results['tamil_text']!);
     results['tgt_text'] = replace_names(tgt_text);
   }
 

@@ -27,9 +27,9 @@ class _Translation extends Translation {
   _Translation(
     this.text,
     this.sound, {
-    this.sourceLanguage,
-    this.targetLanguage,
-    this.source,
+    required this.sourceLanguage,
+    required this.targetLanguage,
+    required this.source,
   }) : super._(text, sound, source, sourceLanguage, targetLanguage);
 
   String operator +(other) => this.toString() + other.toString();

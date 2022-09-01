@@ -69,7 +69,7 @@ class GoogleTokenGenerator implements TokenProvider {
     return ['406398', (561666268 + 1526272306)];
   }
 
-  int wr(dynamic a, dynamic b) {
+  int? wr(dynamic a, dynamic b) {
     var d;
     try {
       for (var c = 0; c < b.toString().length - 2; c += 3) {

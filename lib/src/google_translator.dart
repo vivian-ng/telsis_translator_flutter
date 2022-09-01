@@ -64,13 +64,19 @@ class GoogleTranslator {
     //for (var c = 0; c < jsonData[0].length; c++) {
     //  sb.write(jsonData[0][c][0]);
     //}
-    String sb = jsonData[0][0][0];
+    String sb = '';
+    if (jsonData[0][0][0] != null) {
+      sb = jsonData[0][0][0];
+    }
     //final sb2 = StringBuffer();
 
     //for (var c = 1; c < jsonData[0].length; c++) {
     // sb2.write(jsonData[0][c][2]);
     //}
-    String sb2 = jsonData[0][1][2];
+    String sb2 = '';
+    if (jsonData[0][1][2] != null) {
+      sb2 = jsonData[0][1][2];
+    }
     //final sb2 = jsonData[0][1][2].toString();
 
     if (from == 'auto' && from != to) {

@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -50,14 +50,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  File _image;
+  //File _image;
   bool _filePicked = false;
 
   final _formKey = GlobalKey<FormBuilderState>();
   String _translatedText = '';
   String _telsisText = '';
-  Map<String, String> languages;
-  Map<String, String> reverseLanguages;
+  late Map<String, String> languages;
+  late Map<String, String> reverseLanguages;
   List<String> languageNames = [];
   final errorMessages = {
     1: 'Language not supported',
@@ -65,6 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
     3: 'Source and output language cannot be the same',
     4: 'This is a Telsis language translator'
   };
+
+//  void _onChanged(dynamic val) => debugPrint(val.toString());
 
   void _showNotImplementedDialog(BuildContext context) {
     // Displays a dialog for features that have not been implemented
@@ -90,29 +92,31 @@ class _MyHomePageState extends State<MyHomePage> {
   Future _translate() async {
     int returncode = 0;
     String srctext = '';
+    String srclang = '';
+    String tgtlang = '';
     FocusScope.of(context).unfocus();
-    String srclang =
-        reverseLanguages[_formKey.currentState.fields['source_language'].value];
-    String tgtlang =
-        reverseLanguages[_formKey.currentState.fields['target_language'].value];
-    srctext = _formKey.currentState.fields['source_text'].value;
-    TelsisTranslator translator = TelsisTranslator(srctext, srclang, tgtlang);
+    srclang = reverseLanguages[
+        _formKey.currentState!.fields['source_language']?.value]!;
+    tgtlang = reverseLanguages[
+        _formKey.currentState!.fields['target_language']?.value]!;
+    srctext = _formKey.currentState!.fields['source_text']?.value;
+    TelsisTranslator translator = TelsisTranslator(srctext, srclang, tgtlang!);
     returncode =
         await translator.translate(srctext, src: srclang, tgt: tgtlang);
     setState(() {
       if (returncode == 0) {
-        _translatedText = translator.results['tgt_text'];
+        _translatedText = translator.results['tgt_text']!;
         if (tgtlang == 'telsis') {
-          _telsisText = translator.results['tgt_text'].replaceAll('\\', '');
+          _telsisText = translator.results['tgt_text']!.replaceAll('\\', '');
         } else {
-          _telsisText = translator.results['src_text'].replaceAll('\\', '');
+          _telsisText = translator.results['src_text']!.replaceAll('\\', '');
         }
       } else {
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
                   title: Text("Error"),
-                  content: Text(errorMessages[returncode]),
+                  content: Text(errorMessages[returncode]!),
                   actions: <Widget>[
                     // usually buttons at the bottom of the dialog
                     TextButton(
@@ -156,6 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
@@ -164,10 +169,15 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               FormBuilder(
                 key: _formKey,
+                onChanged: () {
+                  _formKey.currentState!.save();
+                  debugPrint(_formKey.currentState!.value.toString());
+                },
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FormBuilderSearchableDropdown(
+                      FormBuilderSearchableDropdown<String>(
+                        popupProps: const PopupProps.menu(showSearchBox: true),
                         //FormBuilderDropdown(
                         name: 'source_language',
                         //autoFocusSearchBox: true,
@@ -176,9 +186,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         items: languageNames,
                         //items: languageDropdownItems,
+                        //onChanged: _onChanged,
                         initialValue: 'Telsis',
                       ),
-                      FormBuilderSearchableDropdown(
+                      FormBuilderSearchableDropdown<String>(
+                        popupProps: const PopupProps.menu(showSearchBox: true),
                         //FormBuilderDropdown(
                         name: 'target_language',
                         //autoFocusSearchBox: true,
@@ -187,12 +199,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         items: languageNames,
                         //items: languageDropdownItems,
+                        //onChanged: _onChanged,
                         initialValue: 'English',
                       ),
                       FormBuilderTextField(
                         name: 'source_text',
                         textInputAction: TextInputAction.newline,
                         keyboardType: TextInputType.multiline,
+                        initialValue: 'text',
+                        //onChanged: _onChanged,
                         maxLines: null,
                         style: new TextStyle(
                           fontSize: 24.0,
@@ -244,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   "assets/icon/TelsisTranslatorIcon.png",
                                   scale: 4),
                               applicationName: 'Telsis Translator',
-                              applicationVersion: '0.1.4',
+                              applicationVersion: '0.1.5',
                               applicationLegalese: '©2021 Vivian Ng',
                               children: <Widget>[
                                 Padding(
