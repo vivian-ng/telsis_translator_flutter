@@ -296,7 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   "assets/icon/TelsisTranslatorIcon.png",
                                   scale: 4),
                               applicationName: 'Telsis Translator',
-                              applicationVersion: '0.1.6',
+                              applicationVersion: '0.2.0',
                               applicationLegalese: '©2022 Vivian Ng',
                               children: <Widget>[
                                 Padding(
