@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ));
       return;
     }
-    TelsisTranslator translator = TelsisTranslator(srctext, srclang, tgtlang!);
+    TelsisTranslator translator = TelsisTranslator(srctext, srclang, tgtlang);
     returncode =
         await translator.translate(srctext, src: srclang, tgt: tgtlang);
     setState(() {
