@@ -67,6 +67,22 @@ class _MyHomePageState extends State<MyHomePage> {
     4: 'This is a Telsis language translator',
     5: 'Source text must not be empty',
   };
+  late FocusNode myFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    myFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+    myFocusNode.dispose();
+
+    super.dispose();
+  }
 
   void _onChanged(dynamic val) {
     // Uncomment below to print debug console output
@@ -170,10 +186,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       DropdownSearch<String>(
                         popupProps: PopupProps.menu(
-                          showSelectedItems: true,
-                          showSearchBox: true,
-                        ),
+                            showSelectedItems: true,
+                            showSearchBox: true,
+                            searchFieldProps: TextFieldProps(
+                              autofocus: true,
+                              focusNode: myFocusNode,
+                            )),
                         items: languageNames,
+                        dropdownButtonProps: DropdownButtonProps(
+                          autofocus: true,
+                          focusNode: myFocusNode,
+                        ),
                         dropdownDecoratorProps: DropDownDecoratorProps(
                           dropdownSearchDecoration: InputDecoration(
                             labelText: "Source language",
@@ -187,10 +210,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       DropdownSearch<String>(
                         popupProps: PopupProps.menu(
-                          showSelectedItems: true,
-                          showSearchBox: true,
-                        ),
+                            showSelectedItems: true,
+                            showSearchBox: true,
+                            searchFieldProps: TextFieldProps(
+                              autofocus: true,
+                              focusNode: myFocusNode,
+                            )),
                         items: languageNames,
+                        dropdownButtonProps: DropdownButtonProps(
+                          autofocus: true,
+                          focusNode: myFocusNode,
+                        ),
                         dropdownDecoratorProps: DropDownDecoratorProps(
                           dropdownSearchDecoration: InputDecoration(
                             labelText: "Target language",

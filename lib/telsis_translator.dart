@@ -76,15 +76,21 @@ class TelsisTranslator {
       }
     });
 
+    //print('tamil2telsis: ' + converted_text);
     return converted_text;
   }
 
   String replace_names(String textstring) {
     /// Replace name codes with actual literal values.
+
     for (var name_code in names_converted.keys) {
+      //print(name_code);
+      //print(names_converted[name_code]!);
+      //print(textstring.replaceAll(name_code, names_converted[name_code]!));
       textstring =
           textstring.replaceAll(name_code, names_converted[name_code]!);
     }
+    //print('replace_names: ' + textstring);
     return textstring;
   }
 
@@ -92,6 +98,7 @@ class TelsisTranslator {
     /// Convert Telsis to tamil string of unaccented characters
     /// using a substitution cipher.
     String converted_text = tamil2telsis(telsis_string);
+    //print('telsis2tamil: ' + converted_text);
     return converted_text;
   }
 
@@ -102,6 +109,8 @@ class TelsisTranslator {
     String processed_text = '';
     String c = '';
     String name = '';
+
+    //print('preprocess_source_text (before): ' + text);
 
     text.runes.forEach((int rune) {
       c = new String.fromCharCode(rune);
@@ -125,6 +134,7 @@ class TelsisTranslator {
           literal_flag = false;
           name_code = 'xxx' + current_name_number.toString();
           names_converted[name_code] = name; // add name and code to dictionary
+          //print(name_code + ': ' + names_converted[name_code].toString());
           name = '';
         }
       }
@@ -134,6 +144,7 @@ class TelsisTranslator {
       processed_text =
           processed_text.replaceAll(names_converted[name_code]!, name_code);
     }
+    //print('preprocess_source_text (after): ' + processed_text);
     return processed_text;
   }
 
@@ -176,6 +187,7 @@ class TelsisTranslator {
     var translation =
         await translator.translate(tamil_script, from: 'ta', to: tgt_lang);
     results['tgt_text'] = translation.text;
+    //print('tamil2lang: ' + translation.text);
     return translation.text;
   }
 
@@ -188,7 +200,10 @@ class TelsisTranslator {
     results['tamil_script'] = translation.text;
     results['tamil_sound'] = translation.sound;
     // results in unaccented characters
-    results['tamil_text'] = removeDiacritics(translation.sound);
+    results['tamil_text'] =
+        removeDiacritics(translation.sound).replaceAll('XXX', 'xxx');
+
+    //print('lang2tamil: ' + results['tamil_text'].toString());
 
     return results['tamil_text'];
   }
@@ -199,6 +214,7 @@ class TelsisTranslator {
     await lang2tamil(source_text, src_lang);
     var tgt_text = tamil2telsis(results['tamil_text']!);
     results['tgt_text'] = replace_names(tgt_text);
+    //print('lang2telsis: ' + results['tgt_text'].toString());
   }
 
   Future telsis2lang(String source_text, String tgt_lang) async {
@@ -206,6 +222,7 @@ class TelsisTranslator {
     await tamil2lang(telsis2tamil(source_text),
         tgt_lang); // convert from Telsis to Tamil, then translate to target language
     results['src_text'] = source_text;
+    //print('telsis2lang: ' + results['src_text'].toString());
   }
 
   Future translate(String sourcetext,
