@@ -193,10 +193,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               focusNode: myFocusNode,
                             )),
                         items: languageNames,
-                        dropdownButtonProps: DropdownButtonProps(
-                          autofocus: true,
-                          focusNode: myFocusNode,
-                        ),
                         dropdownDecoratorProps: DropDownDecoratorProps(
                           dropdownSearchDecoration: InputDecoration(
                             labelText: "Source language",
@@ -217,10 +213,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               focusNode: myFocusNode,
                             )),
                         items: languageNames,
-                        dropdownButtonProps: DropdownButtonProps(
-                          autofocus: true,
-                          focusNode: myFocusNode,
-                        ),
                         dropdownDecoratorProps: DropDownDecoratorProps(
                           dropdownSearchDecoration: InputDecoration(
                             labelText: "Target language",
