@@ -1,7 +1,7 @@
 name: telsis-translator-flutter
 version: 0.2.0
 summary: Telsis language translator
-description: App that translates to and from the Telsis language
+description: App that translates to and from the Telsis language used in the Violet Evergarden series
 
 confinement: strict
 base: core18
