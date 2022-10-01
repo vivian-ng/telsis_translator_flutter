@@ -261,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Padding(
                         padding: EdgeInsets.all(10),
-                        child: Text(
+                        child: SelectableText(
                           _translatedText,
                           style: new TextStyle(
                             fontSize: 24.0,
@@ -270,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Padding(
                         padding: EdgeInsets.all(10),
-                        child: Text(
+                        child: SelectableText(
                           _telsisText,
                           style: new TextStyle(
                             fontSize: 24.0,
@@ -288,12 +288,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                   "assets/icon/TelsisTranslatorIcon.png",
                                   scale: 4),
                               applicationName: 'Telsis Translator',
-                              applicationVersion: '0.2.0',
+                              applicationVersion: '0.2.1',
                               applicationLegalese: '©2022 Vivian Ng',
                               children: <Widget>[
                                 Padding(
                                     padding: EdgeInsets.only(top: 15),
-                                    child: Text(
+                                    child: SelectableText(
                                         'Translates to and from the Telsis language used in the Violet Evergarden anime series\n\nSource code:\nhttps://github.com/vivian-ng/telsis_translator_flutter'))
                               ],
                             );

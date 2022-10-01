@@ -75,6 +75,7 @@ by [Gabriel Pacheco](https://github.com/gabrielpacheco23) is also used by the ap
 - 2022-09-01: Version 0.1.5; added null safety checks and such; handling of backslash is still unstable; unstable in Linux (depending on GTK version)
 - 2022-09-01: Version 0.1.6; switched from flutter_form_builder to use dropdown_search instead
 - 2022-09-03: Version 0.2.0; resolved issue with name_code replacement; added autofocus to dropdown search text fields
+- 2022-10-01: Version 0.2.1; use SelectableText so that translated text can be copied and pasted elsewhere
 
 
 ## Disclaimer
