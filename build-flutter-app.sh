@@ -24,8 +24,10 @@ flutter pub get
 flutter build linux
 
 cd build/linux/x64/release/bundle || exit
-tar -cavf $archiveName ./*
-mv $archiveName "$baseDir"/
+tar -cavf "$baseDir"/$archiveName *
 cd "$baseDir"
-tar -uavf $archiveName packaging/linux/*
+cd packaging/linux || exit
+tar -uavf "$baseDir"/$archiveName *
+cd "$baseDir"
 gzip $archiveName
+
